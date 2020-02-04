@@ -34,8 +34,6 @@ services:
       args:
         REACT_APP_API_URL: 'http://localhost:3002'
     restart: always
-    environment:
-      REACT_APP_API_URL: 'http://localhost:3002'
     container_name: test_frontend
     ports:
       - 80:80
