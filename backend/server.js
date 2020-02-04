@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
-const UserController = require('./controllers/user-controller')
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const PORT = process.env.PORT || 5000;
@@ -15,7 +14,7 @@ app.get('/', function (req, res) {
 });
 
 
-app.get('/users', UserController)
+app.get('/users', require('./controllers/user-controller'))
 
 
 app.listen(PORT, function () {

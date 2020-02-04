@@ -23,5 +23,17 @@ services:
       POSTGRES_DB: 'newpgdb'
       POSTGRES_HOST: database
     container_name: test_backend
+    depends_on:
+      - database
     ports:
       - 3002:3002
+  frontend:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./frontend
+    restart: always
+    environment:
+      REACT_APP_API_URL: 'http://localhost:3002'
+    container_name: test_frontend
+    ports:
+      - 3000:3000
