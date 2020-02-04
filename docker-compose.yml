@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  database:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: '%wBYU1iNV5@V!'
+      POSTGRES_USER: 'newpguser'
+      POSTGRES_DB: 'newpgdb'
+    container_name: postgres
+    ports:
+      - 5432:5432
