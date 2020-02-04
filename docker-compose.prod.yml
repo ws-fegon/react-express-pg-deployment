@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  database:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: '%wBYU1iNV5@V!'
+      POSTGRES_USER: 'newpguser'
+      POSTGRES_DB: 'newpgdb'
+    container_name: test_postgres
+    ports:
+      - 5432:5432
+  backend:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./backend
+    restart: always
+    environment:
+      NODE_ENV: 'docker'
+      PORT: 3002
+      POSTGRES_PASSWORD: '%wBYU1iNV5@V!'
+      POSTGRES_USER: 'newpguser'
+      POSTGRES_DB: 'newpgdb'
+      POSTGRES_HOST: database
+    container_name: test_backend
+    depends_on:
+      - database
+    ports:
+      - 3002:3002
+  frontend:
+    build:
+      dockerfile: ./Dockerfile.prod
+      context: ./frontend
+      args:
+        REACT_APP_API_URL: 'http://localhost:3002'
+    restart: always
+    environment:
+      REACT_APP_API_URL: 'http://localhost:3002'
+    container_name: test_frontend
+    ports:
+      - 80:80
