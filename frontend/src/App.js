@@ -32,7 +32,10 @@ class App extends Component {
         <ul className="App-intro">
           {this.state.users.map(user => (
             <li key={user.id}>
-              {`${user.username} - ${new Date(user.birthday).getDate()}/${new Date(user.birthday).getMonth()}/${new Date(user.birthday).getFullYear()}`}
+              {`${user.username} -
+                ${new Date(user.birthday).getDate()} /
+                ${new Date(user.birthday).getMonth()} /
+                ${new Date(user.birthday).getFullYear()}`}
             </li>
           ))}
         </ul>
